@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <ToolBar/>
-        <v-container  >
-          <v-layout >
+        <v-container>
+          <v-layout>
             <v-flex>
               <v-select
                 :items="names"
@@ -17,7 +17,6 @@
             </v-flex>
           </v-layout>
         </v-container>
-
         <span id="isLoading" v-if="isLoading">
           <img src="./assets/loading-1.gif" height="100"/>
         </span>
@@ -26,7 +25,6 @@
             <p class="card--film__error subheading">Error trying to request data file of 'unkown'. Please select another character</p>
           </div>
         </section>
-
         <section v-if="isLoading == false && charData.length > 0"  class="card--film__section">
           <div class="card--film__container"  v-for="(charData, index) in charData" :key="index">
             <div class="blackout">
@@ -39,7 +37,6 @@
                 :src="getImgUrl(charData.episode_id)"
                 v-bind:alt="charData.episode_id">
             </div>
-            <!-- <h3 class="card--film__title headline">{{ charData.title }}</h3> -->
             <div class="crawl-text--film__container">
               <p class="card--film__date subheading">Released: {{ [ charData.release_date, "YYYY-MM-DD" ] | moment("dddd, MMMM Do YYYY") }}</p>
               <p class="card--film__director subheading">Directed by: {{ charData.director }}</p>
@@ -61,18 +58,18 @@
   position: absolute;
 }
 .v-menu>.v-menu__content[style] {
-      position: absolute;
-    margin-left: -12px;
-    margin-top: -24px;
-    top:0 !important;
-    left:0 !important;
+  position: absolute;
+  margin-left: -12px;
+  margin-top: -24px;
+  top:0 !important;
+  left:0 !important;
 }
 body {
-    background-position-x: right;
-    background-size: contain;
-    background-attachment: fixed;
-    background: url('./assets/bg-4.png') #000 no-repeat;
-  }
+  background-position-x: right;
+  background-size: contain;
+  background-attachment: fixed;
+  background: url('./assets/bg-4.png') #000 no-repeat;
+}
 #app {
   height: 100vh;
   min-height: 100%;
@@ -123,44 +120,39 @@ body {
   justify-content: center;
   align-content: center;
 }
-.titles
-{
+.titles {
   opacity: 0;
-	position: absolute;
-	width: 28rem;
-	height: 60rem;
-	bottom: 0;
-	left: 50%;
-	margin-left: -14rem;
-	font-size: 200%;
-	font-weight: bold;
-	text-align: justify;
-	overflow: hidden;
-	transform-origin: 50% 100%;
-	transform: perspective(300px) rotateX(25deg);
+  position: absolute;
+  width: 28rem;
+  height: 60rem;
+  bottom: 0;
+  left: 50%;
+  margin-left: -14rem;
+  font-size: 200%;
+  font-weight: bold;
+  text-align: justify;
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  transform: perspective(300px) rotateX(25deg);
   color: #ffc400;
 }
-
-.titles:after
-{
-
-	position: absolute;
-	content: ' ';
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 60%;
-	background-image: linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
-	pointer-events: none;
+.titles:after {
+  position: absolute;
+  content: ' ';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 60%;
+  background-image: linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+  pointer-events: none;
 }
 .card--film__container:hover .titlecontent {
-	position: absolute;
-	top: 10%;
-	animation: scroll 60s linear 0s infinite;
+  position: absolute;
+  top: 10%;
+  animation: scroll 60s linear 0s infinite;
 }
 .card--film__container:hover .blackout,
-.card--film__container:hover .titles
-{
+.card--film__container:hover .titles {
   opacity: 1;
 }
 .blackout img {
@@ -173,10 +165,9 @@ body {
 .card--film__container:hover .blackout img {
   transform: scale(0);
 }
-
 @keyframes scroll {
-	0% { top: 100%; }
-	100% { top: -170%; }
+  0% { top: 100%; }
+  100% { top: -170%; }
 }
 </style>
 
@@ -189,7 +180,6 @@ import data from '../api/characters.json';
 
 const names = data.characters.map(character => character.name);
 const urls = data.characters.map(character => character.url);
-
 
 export default {
   name: 'App',
@@ -252,4 +242,3 @@ export default {
   },
 };
 </script>
-
