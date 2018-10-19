@@ -172,73 +172,73 @@ body {
 </style>
 
 <script>
-  import Vue from 'vue';
-  import ToolBar from './components/ToolBar';
-  import Footer from './components/Footer';
-  import axios from 'axios';
-  import data from "../api/characters.json";
+import Vue from 'vue';
+import axios from 'axios';
+import ToolBar from './components/ToolBar';
+import Footer from './components/Footer';
+import data from '../api/characters.json';
 
-  const names = data.characters.map(character => character.name);
-  const urls = data.characters.map(character => character.url)
+const names = data.characters.map(character => character.name);
+const urls = data.characters.map(character => character.url);
 
-  export default {
-    name: 'App',
-    data: () => ({
-      names,
-      urls,
-      select: 'SKy Walker',
-      films: [],
-      isError: false,
-      isLoading: false,
-      charData: []
-    }),
-    components: {
-      ToolBar,
-      Footer
+export default {
+  name: 'App',
+  data: () => ({
+    names,
+    urls,
+    select: 'Sky Walker',
+    films: [],
+    isError: false,
+    isLoading: false,
+    charData: [],
+  }),
+  components: {
+    ToolBar,
+    Footer,
+  },
+  methods: {
+    picked: function (e) {
+      const character = data.characters.find(character => character.name === e);
+
+      this.isLoading = true;
+      this.fetchJson(character.url);
     },
-    methods: {
-      picked: function(e) {
-        const character = data.characters.find(character => character.name === e );
-
-        this.isLoading = true;
-        this.fetchJson(character.url);
-      },
-      fetchJson: function (url) {
-        axios.get(url)
-        .then((response)  =>  {
-          if(response.status !== 200) {
+    fetchJson: function (url) {
+      axios.get(url)
+        .then((response) => {
+          if (response.status !== 200) {
             Vue.nextTick(function () {
               this.isLoading = false;
-            })
+            });
             this.isError = true;
             return;
           }
           this.isError = false;
           this.films = response.data.films;
           this.fetchFilms(this.films);
-        }, (err)  =>  {
+        }, (err) => {
           console.error(err);
           this.isError = true;
           this.isLoading = false;
           this.charData = [];
-        })
-      },
-      fetchFilms: function() {
-        var self = this;
-        axios.all(this.films.map(film => axios.get(film)))
+        });
+    },
+    fetchFilms: function () {
+      let self = this;
+      axios.all(this.films.map(film => axios.get(film)))
         .then(axios.spread(function (...responses) {
           const charData = responses.map(response => response.data);
           Vue.nextTick(function () {
             self.charData = charData;
             self.isLoading = false;
-          })
+          });
         }, (err) => {
           console.error(err);
         }));
-      },
-      getImgUrl: function(episodeId) {
-        return require(`./assets/logo/episode-${episodeId}.png`);
-      }
-    }
-  };
+    },
+    getImgUrl: function (episodeId) {
+      return require(`./assets/logo/episode-${episodeId}.png`);
+    },
+  },
+};
 </script>

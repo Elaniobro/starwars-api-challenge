@@ -30,38 +30,38 @@
 </template>
 
 <style scoped>
-    a:link,
-    a:hover {
-        color: #fff;
-        text-decoration: none;
-    }
+  a:link,
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 </style>
 
 <script>
-  export default {
-    data: () => ({
-      icons: [
-        {
-          id: 0,
-          name:'fab fa-twitter',
-          url: 'https://www.twitter.com/elaniobro'
-        },
-        {
-          id: 1,
-          name:'fab fa-github',
-          url: 'https://www.github.com/elaniobro',
-        },
-        {
-          id: 2,
-          name:'fab fa-linkedin',
-          url: 'https://www.linkedin.com/in/elantrybuch/',
-        },
-        {
-          id: 3,
-          name:'fab fa-instagram',
-          url: 'https://www.instagram.com/elaniobro',
-        }
-      ]
-    })
-  }
+export default {
+  data: () => ({
+    icons: [
+      {
+        id: 0,
+        name: 'fab fa-twitter',
+        url: 'https://www.twitter.com/elaniobro'
+      },
+      {
+        id: 1,
+        name: 'fab fa-github',
+        url: 'https://www.github.com/elaniobro',
+      },
+      {
+        id: 2,
+        name: 'fab fa-linkedin',
+        url: 'https://www.linkedin.com/in/elantrybuch/',
+      },
+      {
+        id: 3,
+        name: 'fab fa-instagram',
+        url: 'https://www.instagram.com/elaniobro',
+      },
+    ],
+  }),
+};
 </script>
