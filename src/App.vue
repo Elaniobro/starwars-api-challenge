@@ -198,6 +198,7 @@ export default {
     Footer,
   },
   methods: {
+
     picked (e) {
       const character = data.characters.find(character => character.name === e);
 
