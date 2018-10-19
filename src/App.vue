@@ -181,6 +181,7 @@ import data from '../api/characters.json';
 const names = data.characters.map(character => character.name);
 const urls = data.characters.map(character => character.url);
 
+
 export default {
   name: 'App',
   data: () => ({
