@@ -198,13 +198,13 @@ export default {
     Footer,
   },
   methods: {
-    picked: function (e) {
+    picked (e) {
       const character = data.characters.find(character => character.name === e);
 
       this.isLoading = true;
       this.fetchJson(character.url);
     },
-    fetchJson: function (url) {
+    fetchJson (url) {
       axios.get(url)
         .then((response) => {
           if (response.status !== 200) {
@@ -224,7 +224,7 @@ export default {
           this.charData = [];
         });
     },
-    fetchFilms: function () {
+    fetchFilms () {
       let self = this;
       axios.all(this.films.map(film => axios.get(film)))
         .then(axios.spread(function (...responses) {
@@ -237,7 +237,7 @@ export default {
           console.error(err);
         }));
     },
-    getImgUrl: function (episodeId) {
+    getImgUrl (episodeId) {
       return require(`./assets/logo/episode-${episodeId}.png`);
     },
   },
