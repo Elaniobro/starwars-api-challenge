@@ -22,7 +22,8 @@
         </span>
         <section v-if="isError">
           <div class="card--film__container">
-            <p class="card--film__error subheading">Error trying to request data file of 'unkown'. Please select another character</p>
+            <p class="card--film__error subheading">Error trying to request data file of
+'unkown'. Please select another character</p>
           </div>
         </section>
         <section v-if="isLoading == false && charData.length > 0"  class="card--film__section">
@@ -38,7 +39,9 @@
                 v-bind:alt="charData.episode_id">
             </div>
             <div class="crawl-text--film__container">
-              <p class="card--film__date subheading">Released: {{ [ charData.release_date, "YYYY-MM-DD" ] | moment("dddd, MMMM Do YYYY") }}</p>
+              <p class="card--film__date subheading">Released: {{
+                [ charData.release_date, "YYYY-MM-DD" ] |
+                moment("dddd, MMMM Do YYYY") }}</p>
               <p class="card--film__director subheading">Directed by: {{ charData.director }}</p>
               <p class="card--film__producer subheading">Producer(s): {{ charData.producer }}</p>
             </div>
@@ -199,13 +202,14 @@ export default {
   },
   methods: {
 
-    picked (e) {
+    picked(e) {
+      /* eslint-disable-next-line */
       const character = data.characters.find(character => character.name === e);
 
       this.isLoading = true;
       this.fetchJson(character.url);
     },
-    fetchJson (url) {
+    fetchJson(url) {
       axios.get(url)
         .then((response) => {
           if (response.status !== 200) {
@@ -225,11 +229,13 @@ export default {
           this.charData = [];
         });
     },
-    fetchFilms () {
-      let self = this;
+    fetchFilms() {
+      const self = this;
       axios.all(this.films.map(film => axios.get(film)))
+      /* eslint-disable-next-line */
         .then(axios.spread(function (...responses) {
           const charData = responses.map(response => response.data);
+          /* eslint-disable-next-line */
           Vue.nextTick(function () {
             self.charData = charData;
             self.isLoading = false;
@@ -238,7 +244,8 @@ export default {
           console.error(err);
         }));
     },
-    getImgUrl (episodeId) {
+    getImgUrl(episodeId) {
+      /* eslint-disable-next-line */
       return require(`./assets/logo/episode-${episodeId}.png`);
     },
   },

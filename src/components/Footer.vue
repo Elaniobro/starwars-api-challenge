@@ -44,7 +44,7 @@ export default {
       {
         id: 0,
         name: 'fab fa-twitter',
-        url: 'https://www.twitter.com/elaniobro'
+        url: 'https://www.twitter.com/elaniobro',
       },
       {
         id: 1,
